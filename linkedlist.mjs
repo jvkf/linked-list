@@ -42,6 +42,24 @@ export default class LinkedList {
     return null;
   }
 
+  pop() {
+    let node = this.head;
+
+    if (node.next === null) {
+      this.head = null;
+    }
+
+    while (node !== null) {
+      if (node.next.next === null) {
+        node.next = null;
+        return "Removed";
+      }
+      node = node.next;
+    }
+
+    return "Nothing to remove";
+  }
+
   size() {
     let node = this.head;
     let size = 0;

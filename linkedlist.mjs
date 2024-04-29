@@ -12,10 +12,13 @@ export default class LinkedList {
 
   append(value) {
     const node = new Node();
+    const tail = this.tail();
+
     node.value = value;
+    getFinalNode.next = node;
   }
 
-  traverse() {
+  tail() {
     let node = this.head;
 
     while (node !== null) {

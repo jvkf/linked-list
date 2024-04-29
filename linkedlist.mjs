@@ -15,7 +15,19 @@ export default class LinkedList {
     const tail = this.tail();
 
     node.value = value;
-    getFinalNode.next = node;
+    tail.next = node;
+  }
+
+  size() {
+    let node = this.head;
+    let size = 0;
+
+    while (node !== null) {
+      size += 1;
+      node = node.next;
+    }
+
+    return size;
   }
 
   head() {

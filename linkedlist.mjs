@@ -11,6 +11,9 @@ export default class LinkedList {
   }
 
   append(value) {
+    if (this.head === null) {
+      throw new Error("Empty list. Please init");
+    }
     const node = new Node();
     const tail = this.getTail();
 
@@ -53,6 +56,7 @@ export default class LinkedList {
     } else if (index <= 0 || index >= size) {
       throw new Error("Out of boundaries");
     }
+    const insertNode = new Node();
     const prevIndexNode = this.at(index - 1);
     const currentIndexNode = this.at(index);
 
@@ -62,6 +66,7 @@ export default class LinkedList {
   }
 
   removeAt(index) {
+    let size = this.size();
     if (index === 0) {
       this.head = this.head.next;
       return;

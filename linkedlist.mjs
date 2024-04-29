@@ -12,7 +12,7 @@ export default class LinkedList {
 
   append(value) {
     const node = new Node();
-    const tail = this.tail();
+    const tail = this.getTail();
 
     node.value = value;
     tail.next = node;
@@ -43,14 +43,16 @@ export default class LinkedList {
   }
 
   insertAt(index, value) {
+    let size = this.size();
     if (index === 0) {
       this.prepend(value);
       return;
-    } else if (index >= this.size()) {
+    } else if (index === size) {
       this.append(value);
       return;
+    } else if (index <= 0 || index >= size) {
+      throw new Error("Out of boundaries");
     }
-    const insertNode = new Node();
     const prevIndexNode = this.at(index - 1);
     const currentIndexNode = this.at(index);
 
@@ -59,8 +61,26 @@ export default class LinkedList {
     prevIndexNode.next = insertNode;
   }
 
+  removeAt(index) {
+    if (index === 0) {
+      this.head = this.head.next;
+      return;
+    } else if (index <= 0 || index >= size) {
+      throw new Error("Out of boundaries");
+    }
+    const prevNode = this.at(index - 1);
+    const nextNode = this.at(index + 1);
+
+    prevNode.next = nextNode;
+  }
+
   pop() {
     let node = this.head;
+    let size = this.size();
+
+    if (size === 0) {
+      throw new Error("Empty list");
+    }
 
     if (node.next === null) {
       this.head = null;
@@ -74,7 +94,7 @@ export default class LinkedList {
       node = node.next;
     }
 
-    return "Nothing to remove";
+    return null;
   }
 
   contains(value) {
@@ -117,11 +137,11 @@ export default class LinkedList {
     return size;
   }
 
-  head() {
+  getHead() {
     return this.head;
   }
 
-  tail() {
+  getTail() {
     let node = this.head;
 
     while (node !== null) {

@@ -73,6 +73,21 @@ export default class LinkedList {
     return false;
   }
 
+  find(value) {
+    let node = this.head;
+    let idx = 0;
+
+    while (node !== null) {
+      if (node.value === value) {
+        return idx;
+      }
+      node = node.next;
+      idx += 1;
+    }
+
+    return null;
+  }
+
   size() {
     let node = this.head;
     let size = 0;

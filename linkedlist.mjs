@@ -18,6 +18,10 @@ export default class LinkedList {
     getFinalNode.next = node;
   }
 
+  head() {
+    return this.head;
+  }
+
   tail() {
     let node = this.head;
 

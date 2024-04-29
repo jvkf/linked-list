@@ -60,6 +60,19 @@ export default class LinkedList {
     return "Nothing to remove";
   }
 
+  contains(value) {
+    let node = this.head;
+
+    while (node !== null) {
+      if (node.value === value) {
+        return true;
+      }
+      node = node.next;
+    }
+
+    return false;
+  }
+
   size() {
     let node = this.head;
     let size = 0;

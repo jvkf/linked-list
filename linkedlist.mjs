@@ -42,6 +42,23 @@ export default class LinkedList {
     return null;
   }
 
+  insertAt(index, value) {
+    if (index === 0) {
+      this.prepend(value);
+      return;
+    } else if (index >= this.size()) {
+      this.append(value);
+      return;
+    }
+    const insertNode = new Node();
+    const prevIndexNode = this.at(index - 1);
+    const currentIndexNode = this.at(index);
+
+    insertNode.value = value;
+    insertNode.next = currentIndexNode;
+    prevIndexNode.next = insertNode;
+  }
+
   pop() {
     let node = this.head;
 

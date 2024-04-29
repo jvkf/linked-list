@@ -116,4 +116,19 @@ export default class LinkedList {
 
     return null;
   }
+
+  toString() {
+    let node = this.head;
+    let tempArr = [];
+
+    while (node !== null) {
+      tempArr.push(`( ${node.value} )`);
+      if (node.next === null) {
+        tempArr.push("null");
+      }
+      node = node.next;
+    }
+
+    return tempArr.join(" -> ");
+  }
 }
